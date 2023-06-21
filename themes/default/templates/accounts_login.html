@@ -1,0 +1,17 @@
+<form method="post">
+    <div id="request-return"></div>
+    <div class="accounts-signup-caption">{lang.ACCOUNTS_SIGIN}</div>
+    <div class="accounts-signup">
+            <div class="accounts-signup-item">
+            <div class="accounts-signup-item-title">{lang.ACCOUNTS_EMAIL}</div>
+            <div class="accounts-signup-item-value"><input type="text" id="input-accounts-email" name="input-accounts-email" class="accounts-input-text" /></div>        
+            </div>
+    </div>
+    <div class="accounts-signup">
+            <div class="accounts-signup-item">
+            <div class="accounts-signup-item-title">{lang.ACCOUNTS_PASSWORD}</div>
+            <div class="accounts-signup-item-value"><input type="password" id="input-accounts-password" name="input-accounts-password" class="accounts-input-text" /></div>        
+            </div>               
+  </div>
+  <div class="accounts-signup-section"><input type="submit" id="accounts-signin-submit" name="accounts-signin-submit" onClick="return accountsSignin();" class="accounts-input-submit" value="{lang.ACCOUNTS_SIGIN_SUBMIT}" /></div>
+</form>

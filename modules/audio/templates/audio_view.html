@@ -1,0 +1,101 @@
+<script type="text/javascript">
+
+	function empty(string){
+		
+		return string.replace(/ /g , "");	
+		
+	}
+
+	$(document).ready(function(){
+	
+		$("#postcomment").click(function(){
+			
+		var comment_name = $("#name").val();
+		var comment_text = $("#comment").val();
+		
+		if(empty(comment_name) == "" || empty(comment_text) == ""){
+			
+		     $("#results").hide().html("<div class='red'>{lang.FILEDS_EMPTY}</div>").fadeIn(300).delay(1500).fadeOut(300);
+				
+			return false;
+		}
+		
+		$.post("{siteUrl}/{module}/addcomment" , {
+			"addcomment" : 1 , 
+			"name" : comment_name , 
+			"text" : comment_text , 
+			"captcha_code" : "{captcha}" ,
+			"blogid" : "{id}"
+			} , 
+		
+		function(data){
+								
+				$("#name").val("");
+				$("#comment").val("");
+				$("#results").hide().html(data).fadeIn(300).delay(1500).fadeOut(300);
+
+			});	
+		
+		});
+		
+	});
+</script>
+    <div style="font-family:Arial, Helvetica, sans-serif; font-size:18px; color:#333;">{lang.AUDIO}
+    <span style="padding-bottom:2px;">&#8250;</span> <a href="{siteUrl}/{module}/section/catid/{sectionId}">{sectionName}</a>
+    <span style="padding-bottom:2px;">&#8250;</span> {title}
+    </div>
+<div>
+{triggerEvent name="BeforeAudioPlayerDisplay"}
+<div style="float:left; margin:10px;">
+    
+    	<audio src="{siteUrl}/upload/audio/files/{file}" autoplay="autoplay" tabindex="0" controls="true" width="300"></audio>
+        <div class="audio_info"> <a href="{siteUrl}/{module}/download/id/{id}" style="color:red;">{lang.DOWNLOAD}</a> <span style="float:left;">{date}</span></div>
+        <div class="audio_info">{lang.AUDIO_HITS} :  <span style="color:#C00; margin-right:10px;">{hits}</span></div>
+        <div class="audio_info">{lang.AUDIO_DOWNLOADS} :  <span style="color:#C00; margin-right:10px;">{downloads}</span></div>
+        <div class="audio_info">{lang.AUDIO_COMMENTS} : <span style="color:#C00; margin-right:10px;">{totalComments}</span> </div>
+        
+    </div>
+    
+    <div style="margin-left:300px;">
+    	<div class="audio_title">{title}</div>
+		<div class="audio_more">{caption}</div>
+    </div>
+    
+    <div style="clear:both;"></div>
+    
+</div>
+{triggerEvent name="BeforeAudioCommentsDisplay"}
+<h1 id="menu_title" style="margin:0px;">{lang.COMMENTS}</h1>
+		<div id="menu_body">
+        
+        {loop name="$comment" sql="$comments"}
+        
+			<div>
+            	<div id="comment_title">كتب : {comment[name]}</div>
+            	<div id="comment_body">{comment[comment]}</div>
+            	<div id="comment_date">{comment[date]}</div>
+            </div>
+        
+        {/loop}
+</div>
+
+{if name="$modSetting_addcomments == 0"}
+<h1 id="menu_title" style="margin:0px;">{lang.POST_COMMENT}</h1>
+	<div id="menu_body">        	
+    <div id="results"></div>
+     <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td>{lang.COMMENT_NAME}</td>
+        <td><input type="text" id="name" /></td>
+      </tr>
+      <tr>
+        <td>{lang.COMMENT_MESSAGE}</td>
+        <td><textarea rows="5" cols="50" id="comment"></textarea></td>
+      </tr>
+      <tr>
+      <td></td>
+      <td><input type="button" id="postcomment" value="{lang.COMMENT_PUBLISH}" /></td>
+      </tr>
+    </table>
+    </div>
+  {/if}

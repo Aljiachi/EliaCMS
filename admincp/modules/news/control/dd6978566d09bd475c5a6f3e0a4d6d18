@@ -1,0 +1,9 @@
+<?php
+
+	# Uninstall;
+	
+	$Drop_Tables = mysql_query("DROP TABLE `module_news`, `module_news_setting`;");
+	
+	if(!$Drop_Tables){ print "Error;";}
+	
+?>

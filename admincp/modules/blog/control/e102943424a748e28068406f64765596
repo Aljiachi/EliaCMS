@@ -1,0 +1,14 @@
+<?php
+
+	$removeTable = mysql_query("DROP TABLE `blog_module_comments`, `blog_module_sections`, `blog_module_topics`;");
+	
+	if($removeTable){
+		
+			$adinc->greenAlert("تم إزالة البرنامج بنجاح");
+		
+		}else{
+		
+			$adinc->redAlert("حدث خطأ في إزالة البرنامج");	
+		}
+
+?>

@@ -1,0 +1,20 @@
+<h1 id="menu_title" style="margin:0px;"><a href="{siteUrl}/{module}/section/catid/{id}">{title}</a></h1>
+	<div id="menu_body">   
+
+
+        {loop name="$file" sql="$files"}
+ 
+			<div class="file_row">
+            	<img src="{siteUrl}/upload/audio/sections/{photo}" width="70" height="60" style="float:right; margin:5px; background:#fff; padding:1px; border:1px solid #ccc;" />
+            	<div class="file_title"><a href="{siteUrl}/{module}/file/id/{file[id]}" title="{file[title]}">{substr.$file[title].21}</a></div>
+<!--            	<div class="file_caption">{substr.$file[caption].50}</div>
+            -->	<div class="file_date">{lang.AUDIO_HITS} : {file[hits]}</div>              
+                <div class="file_date">{lang.CREATE_TIME} : {date.$file[time]."Y/m/d"}</div>
+
+            </div>
+        
+        {/loop}
+
+        <div style="clear:both;"></div>
+        
+  </div>

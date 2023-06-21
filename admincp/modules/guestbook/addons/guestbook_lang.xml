@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<elia>
+	<language lang_code="AR" module="guestbook">
+		<word code="GUESTBOOK_NAME">إسم المشارك</word>
+		<word code="GUESTBOOK_MESSAGE">نص المشارك</word>		
+	</language>
+</elia>

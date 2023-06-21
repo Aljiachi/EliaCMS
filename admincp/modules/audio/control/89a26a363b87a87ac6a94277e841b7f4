@@ -1,0 +1,14 @@
+<?php
+
+	$removeTable = mysql_query("DROP TABLE `audio_module_comments`, `audio_module_sections`, `audio_module_files`;");
+	
+	if($removeTable){
+		
+			$adinc->greenAlert("تم إزالة البرنامج بنجاح");
+		
+		}else{
+		
+			$adinc->redAlert("حدث خطأ في إزالة البرنامج");	
+		}
+
+?>

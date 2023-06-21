@@ -1,0 +1,50 @@
+<?php
+
+	$module = array(
+		'name' => 'سجل الزوار' ,
+		'actived' => true , 
+		'menuShown' => "YES" , 
+		"anyMenu" => "YES" ,
+	);
+	
+   $MakeTable = mysql_query("CREATE TABLE `module_guestbook` (
+							`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+							`name` VARCHAR( 255 ) NOT NULL ,
+							`mail` VARCHAR( 255 ) NOT NULL ,
+							`ip` VARCHAR( 255 ) NOT NULL ,
+							`active` INT NOT NULL ,
+							`comment` VARCHAR( 900 ) NOT NULL ,
+							`time` INT NOT NULL
+							) ENGINE = MYISAM ;
+							");
+	
+		
+	if(!$MakeTable){
+	
+		$adinc->redAlert('حدث خطئ في تنصيب المودول');
+
+	}else{
+		
+		function afterInstall(){
+			
+			global $api;
+							
+			// install Plugins 
+			$api->addPlugin("guestbook_plugin" , true , 'guestbook');
+			
+			// install Phrases
+			$api->addPhrase("guestbook_lang" , "guestbook");
+			
+			// install Menu
+			$api->addMenu(array('menu_name' => 'جديد سجل الزوار' ,
+								'menu_sort' => '1' ,
+								'menu_algin' => 'RIGHT' ,
+								'menu_type' => 'FILE' ,
+								'menu_file' => 'guestbook_menu' ,
+								'module_id' => mysql_insert_id() ,
+								'module_path' => 'guestbook') , true);	
+		
+		}
+		
+	}
+?>

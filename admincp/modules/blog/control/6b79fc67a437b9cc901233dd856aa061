@@ -1,0 +1,51 @@
+<?php
+
+	$module = array(
+	
+		'name' => 'برنامج المدونة' ,
+	
+		'actived' => false
+	
+	);
+	
+	$makeTable = mysql_query("
+CREATE TABLE `blog_module_comments` (
+  `id` int(11) NOT NULL auto_increment,
+  `topic_id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `time` int(11) NOT NULL,
+  `comment` text NOT NULL,
+  `ip` varchar(255) NOT NULL,
+  `active` int(11) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;");
+
+	$makeTable = mysql_query("
+CREATE TABLE `blog_module_sections` (
+  `id` int(11) NOT NULL auto_increment,
+  `title` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+");
+
+	$makeTable = mysql_query("
+CREATE TABLE `blog_module_topics` (
+  `id` int(11) NOT NULL auto_increment,
+  `title` varchar(255) NOT NULL,
+  `more` varchar(900) NOT NULL,
+  `all` text NOT NULL,
+  `views` int(11) NOT NULL,
+  `cat_id` int(11) NOT NULL,
+  `date` varchar(255) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;");
+
+	if($makeTable){
+		
+			$adinc->greenAlert("تم تركيب البرنامج بنجاح");
+		
+		}else{
+		
+			$adinc->redAlert("حدث خطأ في تركيب البرنامج");	
+		}
+?>

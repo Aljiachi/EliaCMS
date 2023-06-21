@@ -1,0 +1,252 @@
+<!---->
+{test_var}
+<!----><!---->
+{test_var}
+<!----><!--أهلاً بالعالم-->
+{test_var}
+<!--أهلاً بالعالم--><script type="text/javascript">
+
+	function lightoff(){
+	
+		if($(".lightOff").css("display") == "none"){
+			
+			$(".lightOff").fadeIn();
+			$("#light_it").addClass("jqbutton_selected");	
+		
+		}else{
+
+			$(".lightOff").fadeOut();
+			$("#light_it").removeClass("jqbutton_selected");	
+
+		}
+	}
+	
+	function share(){
+	
+		if($(".share_box").css("display") == "none"){
+		
+			$(".share_box").fadeIn();
+			
+			$("#share_it").addClass("jqbutton_selected");	
+			
+			if($(".caption_box").css("display") !== "none"){
+			
+				$(".caption_box").hide();	
+			}
+		
+		}else{
+
+			$(".share_box").hide();	
+			$("#share_it").removeClass("jqbutton_selected");	
+				
+			if($(".caption_box").css("display") == "none"){
+			
+				$(".caption_box").fadeIn();	
+						
+			}
+		
+		}
+	}
+
+	function rePlayerSize(){
+		
+		if(jwplayer().getWidth() == 640){
+			
+			$("#bodyOfInfo").animate({"marginTop":130+"px"});
+			$("#left_block").animate({"marginTop":520+"px"});
+			//$("#left_block").hide();
+			//$("#bodyOfContent").css({"margin-left" : "0px"});
+			jwplayer().resize(854, 480)
+			
+		}else{
+			
+			$("#bodyOfInfo").animate({"marginTop":0+"px"});
+			$("#left_block").animate({"marginTop":0+"px"});
+			jwplayer().resize(640, 360)
+			
+		}
+	}
+	
+	function videoLike(videoid){
+		
+		if(videoid!=""){
+		
+			$.post("{siteUrl}/{module}/addlike" , {
+				   "addlike" : "y" , 
+				   "videoid" : videoid , 
+				   "action" : "like" , 
+				} , function(date){
+										
+					$("#image_like").attr("src" , "{siteUrl}/images/button_liked.png");
+				});
+		}
+	}
+	
+	
+	function videoDislike(videoid){
+		
+		if(videoid!=""){
+		
+			$.post("{siteUrl}/{module}/addlike" , {
+				   "addlike" : "y" , 
+				   "videoid" : videoid , 
+				   "action" : "dislike" , 
+				} , function(date){
+						
+					$("#image_dislike").attr("src" , "{siteUrl}/images/button_disliked.png");
+				
+				});
+		}
+	}
+
+
+	function empty(string){
+		
+		return string.replace(/ /g , "");	
+		
+	}
+
+	$(document).ready(function(){
+	
+		$("#postcomment").click(function(){
+			
+		var comment_name = $("#name").val();
+		var comment_text = $("#comment").val();
+		
+		if(empty(comment_name) == "" || empty(comment_text) == ""){
+			
+		     $("#results").hide().html("<div class='red'>{lang.FILEDS_EMPTY}</div>").fadeIn(300).delay(1500).fadeOut(300);
+				
+			return false;
+		}
+		
+		$.post("{siteUrl}/{module}/addcomment" , {
+			"addcomment" : 1 , 
+			"name" : comment_name , 
+			"text" : comment_text , 
+			"captcha_code" : "{captcha}" ,
+			"key" : "{key}"
+			} , 
+		
+		function(data){
+								
+			$("#name").val("");
+			$("#comment").val("");
+			$("#results").hide().html(data).fadeIn(300).delay(1500).fadeOut(300);
+
+			});	
+		
+		});
+		
+	});
+</script>
+<div class="lightOff" style="background:url({siteUrl}/images/light_background.png); display:none; position:fixed; top:0px; right:0px;  width:100%; height:100%;"></div>
+{triggerEvent name="BeforeVideoDisplay"}
+<div style="" id="bodyOfContent">
+ <div id="container">Loading the player ...</div>
+ <script type="text/javascript"> 
+	jwplayer("container").setup({ 
+		 flashplayer: "{siteUrl}/jscript/player/player.swf",
+		 image : "{siteUrl}/upload/videos/photos/{photo}",
+		 file: "{siteUrl}/upload/videos/files/{file}",
+		 autoplay:true,
+		 skin:"{siteUrl}/jscript/player/newtubedark/newtubedark.xml",
+		 height: 360,
+		 width: 640
+	}); 
+    </script>
+  <div id="bodyOfInfo">
+<h1 style="margin:0px; padding:5px; text-align:right; font-family:Arial, Helvetica, sans-serif; color:#000;">{title}</h1>
+<div class="hits">{lang.DOWNLOADS} : {downloads}
+	<span style="font-size:12px; margin-right:5px; margin-left:5px; font-weight:normal; color:#999;">|</span>
+                 {lang.VIDEO_VIEWS} : {hits} 
+    </div>
+    <div align="left">
+    <div>
+    	<div class="liksBar">
+        	<div style="background:#559900; width:{liksProgress}%; position:relative;  padding:1px;"></div>
+    	</div>
+    </div>
+    <div class="likes">
+    		<img src="{siteUrl}/images/button_like.png" width="12" /> {likes}
+        <span style="margin-right:15px; margin-left:15px;"></span>
+           	<img src="{siteUrl}/images/button_dislike.png" width="12" /> {dislikes} 
+    </div>
+    <div align="right" style="margin-bottom:10px; margin-top:10px; margin-right:5px;">
+        {if name="$isLiked"}
+    		<a href="javascript:;" onclick="videoLike({id});" class="jqbutton"><img src="{siteUrl}/images/button_like.png" id="image_like" /></a>
+	    {else}
+    		<a class="jqbutton"><img src="{siteUrl}/images/button_liked.png" id="image_like" /></a>     
+        {/if}
+        
+        {if name="$isDisLiked"}
+        	<a href="javascript:;" onclick="videoDislike({id});" class="jqbutton"><img src="{siteUrl}/images/button_dislike.png" id="image_dislike" /></a>
+    	{else}
+        	<a class="jqbutton"><img src="images/button_disliked.png" id="image_dislike" /></a>        
+        {/if}
+            <a href="{siteUrl}/{module}/download/id/{id}" class="jqbutton"><img src="{siteUrl}/images/download.png" /></a> 
+ 			<a href="javascript:;" onclick="lightoff();" id="light_it" class="jqbutton" style="position:relative;"><img src="{siteUrl}/images/light_on.png" /></a>
+   			<a href="javascript:;" class="jqbutton" onclick="rePlayerSize()"><img src="{siteUrl}/images/resize_player.png" height="19" /></a>
+   			<a href="javascript:;" class="jqbutton" id="share_it" title="{lang.VIDEO_SHARE}" onclick="share()"><img src="{siteUrl}/images/share.png" height="19" /></a>
+			<span style="float:left">{date}</span>
+    </div>
+
+		{if name="!empty($caption)"}
+            <div id="comments_area" class="caption_box" style="direction:rtl; text-align:right; line-height:140%;">
+            {caption}
+            </div>
+        {/if}
+
+		<div id="comments_area" class="share_box" style="display:none;">
+        	<h1 style="margin:0px; font-family:Arial, Helvetica, sans-serif; text-align:right;">{lang.SHARE}</h1>
+
+			<div align="left" dir="ltr">
+            	<a href="javascript:;" onclick="shareFacebook(window.location)"><img src="{siteUrl}/images/facebook.png" /></a>
+            	<a href="javascript:;" onclick="shareTwitter('{title}' , window.location)"><img src="{siteUrl}/images/twitter.png" /></a>
+            	<a href="javascript:;" onclick="shareGooglePlus(window.location)"><img src="{siteUrl}/images/google_plus.png" /></a>
+            </div>
+            <div><textarea rows="5" style="width:98%; border:1px solid #ccc; direction:ltr;">&lt;iframe width="640" height="360" src="http://localhost/alkafeelCms/mod.php?mod=videos&page=embed&id={id}" scrolling="no" style="overflow:hidden" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;</textarea> </div>
+		</div>
+        
+        {triggerEvent name="BeforeVideoCommentsDisplay"}
+		
+        <div id="comments_area">
+        <h1 style="margin:0px; font-family:Arial, Helvetica, sans-serif; text-align:right;">{lang.COMMENTS}</h1>
+
+        {loop name="$comment" sql="$comments"}
+        
+			<div style="margin:10px; margin-bottom:15px;">
+            	<div id="comment_title">{comment[name]} <div id="comment_date">{date.$comment[time]."Y/m/d"}</div></div>
+            	<div id="comment_body">{comment[comment]}</div>
+            	
+            </div>
+        
+        {/loop}
+</div>
+
+{if name="$modSetting_addcomments == 0"}
+		<div id="comments_area">
+        <h1 style="margin:0px; font-family:Arial, Helvetica, sans-serif; text-align:right;">{lang.POST_COMMENT}</h1>
+        
+        <div id="results"></div>
+         <table width="100%" style="margin-top:10px;" dir="rtl" border="0" cellspacing="0" cellpadding="5">
+          <tr>
+            <td>{lang.COMMENT_NAME}</td>
+            <td align="right"><input type="text" id="name" /></td>
+          </tr>
+          <tr>
+            <td>{lang.COMMENT_MESSAGE}</td>
+            <td align="right"><textarea rows="5" cols="50" id="comment"></textarea></td>
+          </tr>
+          <tr>
+          <td></td>
+          <td align="right"><input type="button" id="postcomment" value="{lang.COMMENT_PUBLISH}" /></td>
+          </tr>
+        </table>
+    
+        </div>
+  {/if}
+  
+</div>
+
+</div>

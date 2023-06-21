@@ -1,0 +1,30 @@
+<table width="100%" border="0" style="margin:10px;" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="120" valign="top"><img src="{siteUrl}/upload/videos/sections/{sectionPhoto}" width="120" height="80" style="padding:2px; background:#fff; border:1px solid #333;" /></td>
+    <td valign="top" style="padding:5px;">
+    <div style="font-family:Arial, Helvetica, sans-serif; font-size:18px; color:#333;"><a href="{siteUrl}/{module}">المكتبة المرئية</a> <span style="padding-bottom:2px;">&#8250;</span> {sectionName}</div>
+    <div style="padding:5px; font-weight:bold;">عدد الملفات : <span style="color:#c00;">{totalFiles}</span> </div>
+	 <div style="padding:5px; font-weight:bold;">عدد الإستماعات : <span style="color:#c00;">{totalHits}</span> </div>
+    </td>
+  </tr>
+</table>
+
+{triggerEvent name="BeforeSectionVideosDisplay"}
+
+<div style=" width:90%; border-left:1px solid #ccc; padding-right:10px;">
+
+	{loop name="$file" sql="$filesQuery"}
+		<div style="margin-bottom:15px;" class="video_row">
+        	<div style="float:right; height:130px; width:220px; margin-left:10px; position:relative;"><a href="{siteUrl}/{module}/watch/id/{file[id]}"><img src="{siteUrl}/upload/videos/photos/{file[photo]}" width="220" height="130" border="0" /></a>
+                    <div class="video_length">{file[length]}</div>
+            </div>
+            <div style="font-size:18px; font-family:Arial, Helvetica, sans-serif; font-weight:bold; padding:5px;"><a href="{siteUrl}/{module}/watch/id/{file[id]}" style=" color:#438bc5;">{file[title]}</a></div>
+			<div style="font-family:Tahoma, Geneva, sans-serif; font-size:12px; font-weight:normal; padding:5px; line-height:140%; text-align:justify; direction:rtl;">{substr.$file[caption].110}</div>
+            <div style="font-size:10px; color:#880904; padding:2px;">{lang.VIDEO_VIEWS} : {file[hits]}</div>
+            <div style="font-size:10px; color:#880904; padding:2px;">{time.$file[time]}</div>
+
+        	<div style="clear:both;"></div>
+        </div>
+	{/loop}
+    
+</div>

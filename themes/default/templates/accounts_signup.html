@@ -1,0 +1,56 @@
+<form method="post">
+    <div id="request-return"></div>
+
+        <div class="accounts-signup">
+            <div class="accounts-signup-item">
+            <div class="accounts-signup-item-title">{lang.ACCOUNTS_NICKNAME}</div>
+            <div class="accounts-signup-item-value"><input type="text" id="input-accounts-nickname" name="input-accounts-nickname" class="accounts-input-text" /></div>        
+        </div>
+        <div class="accounts-signup-item">
+            <div class="accounts-signup-item-title">{lang.ACCOUNTS_EMAIL}</div>
+            <div class="accounts-signup-item-value"><input type="text" id="input-accounts-email" onKeyUp="return accountsCheckEmailExists()" name="input-accounts-email" class="accounts-input-text" /></div>        
+        </div>
+        <div class="accounts-signup-item">
+            <div class="accounts-signup-item-title">{lang.ACCOUNTS_PASSWORD}</div>
+            <div class="accounts-signup-item-value">
+            	<input type="text" id="input-accounts-password" name="input-accounts-password" onKeyUp="accountsCheckPasswordLength()" class="accounts-input-password" />
+                <div class="accounts-signup-password-length" id="accounts-signup-password-length"><div></div></div>
+                </div>        
+        </div>
+        <div class="accounts-signup-item">
+            <div class="accounts-signup-item-title">{lang.ACCOUNTS_PASSWORD_CONFIRM}</div>
+            <div class="accounts-signup-item-value"><input type="text" id="input-accounts-password-confirm" name="input-accounts-password-confirm" class="accounts-input-password" /></div>        
+        </div>  
+        <div class="accounts-signup-section">{lang.ACCOUNTS_SIGNUP_SECTION}</div>
+         <div class="accounts-signup-item">
+            <div class="accounts-signup-item-title">{lang.ACCOUNTS_GENDER}</div>
+            <div class="accounts-signup-item-value">
+                <select id="input-accounts-gender" name="input-accounts-gender" class="accounts-input-menu">
+                    <option value="1">{lang.PROFILE_GENDER_MALE}</option>
+                    <option value="2">{lang.PROFILE_GENDER_FEMALE}</option>
+                </select>
+            </div>        
+        </div>  
+         <div class="accounts-signup-item">
+            <div class="accounts-signup-item-title">{lang.ACCOUNTS_LOCATION}</div>
+            <div class="accounts-signup-item-value">
+                <select id="input-accounts-location" name="input-accounts-location" class="accounts-input-menu">
+                    {locations}
+                </select>
+            </div>        
+        </div>  
+          <div class="accounts-signup-item">
+            <div class="accounts-signup-item-title">{lang.ACCOUNTS_BIRTHDATE}</div>
+            <div class="accounts-signup-item-value">
+                <select id="input-accounts-bithdate-years" name="input-accounts-birthdate-years" class="accounts-input-menu">
+                    {birthdate_years}
+                </select>
+                <select id="input-accounts-bithdate-months" name="input-accounts-birthdate-months" class="accounts-input-menu">
+                    {birthdate_months}
+                </select>
+                <input type="text" id="input-accounts-bithdate-day" name="input-accounts-birthdate-day" style="width:100px;" class="accounts-input-password" />         
+            </div>        
+        </div>  
+        <div class="accounts-signup-section"><input type="submit" id="accounts-signup-submit" name="accounts-signup-submit" onClick="return accountsSignup();" class="accounts-input-submit" value="{lang.ACCOUNTS_SIGNUP_SUBMIT}" /></div>
+    </div>
+</form>

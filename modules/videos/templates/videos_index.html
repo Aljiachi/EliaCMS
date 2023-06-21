@@ -1,0 +1,41 @@
+<script type="text/javascript">
+	$(document).ready(function(){
+					//	Scrolled by user interaction
+				$('#carou-{id}').carouFredSel({
+					auto: false,
+					prev: '#carou-prev-{id}',
+					next: '#carou-next-{id}',
+					mousewheel: true,
+					swipe: {
+						onMouse: true,
+						onTouch: true
+					}
+				});
+		});
+</script>
+<div class="videos_section_title"><img src="{siteUrl}/upload/videos/sections/{photo}" width="30" height="30" class="section_img" /><a href="{siteUrl}/{module}/section/catid/{id}">{title}</a></h1>
+    <div style="margin-top:10px;">
+    		<div class="list_carousel">
+				<ul id="carou-{id}">		
+ 	    {loop name="$file" sql="$files"}
+        <li>
+ 			<div class="videos_index_item">
+            	<div style="position:relative;">
+                	<a href="{siteUrl}/{module}/watch/id/{file[id]}"><img src="{siteUrl}/upload/videos/photos/{file[photo]}" width="175" height="98" /></a>
+                    <div class="video_length">{file[length]}</div>
+                </div>
+                <div class="index_file_title"><a href="{siteUrl}/{module}/watch/id/{file[id]}">{file[title]}</a></div>
+                <div class="index_file_info">{file[hits]} {lang.VIDEO_VIEWS} 
+                	<span style="float:left; color:#999; font-family:Arial, Helvetica, sans-serif;">{time.$file[time]}</span>
+                </div>
+            </div> </li>
+        {/loop}
+        </ul>
+				<div class="clearfix"></div>
+				<a id="carou-prev-{id}" class="prev" href="#">&lt;</a>
+				<a id="carou-next-{id}" class="next" href="#">&gt;</a>
+			</div>
+    </div>
+    
+	<div style="clear:both;border-bottom:1px solid #ccc; margin:5px; margin-left:20px; margin-right:20px; padding:5px;"></div>
+</div>

@@ -1,0 +1,37 @@
+<?php
+
+	class eliaModuleUnInstall{
+		
+		public function main(){
+	
+			global $db , $adinc;
+			
+			$removeTable = $db->query("DROP TABLE `videos_module_comments`, `videos_module_sections`, `videos_module_files` , `videos_module_setting`;");
+			
+			if($removeTable){
+				
+					$adinc->greenAlert("تم إزالة البرنامج بنجاح");
+				
+				}else{
+				
+					$adinc->redAlert("حدث خطأ في إزالة البرنامج");	
+			}
+						
+		} # end function(main)
+		
+		public function onAfterUnInstall(){
+			
+			global $db , $adinc;
+			
+		} # end function(onAfterUninstall)
+		
+		public function onBeforeUnInstall(){
+			
+			global $db , $adinc;
+			
+		} # end function(onBeforeUninstall)
+		
+	}
+	
+
+?>

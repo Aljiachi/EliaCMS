@@ -1,0 +1,50 @@
+<?php
+
+	$module = array(
+	
+		'name' => 'برنامج المكتبة الصوتية' ,
+		'actived' => false
+	
+	);
+	
+	$makeTable = mysql_query("CREATE TABLE `audio_module_sections` (
+  `id` int(11) NOT NULL auto_increment,
+  `title` varchar(255) NOT NULL,
+  `photo` varchar(255) NOT NULL,
+  `files` int(11) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;");
+
+$makeTable = mysql_query("CREATE TABLE `audio_module_files` (
+  `id` int(11) NOT NULL auto_increment,
+  `title` varchar(255) NOT NULL,
+  `caption` text NOT NULL,
+  `photo` varchar(255) NOT NULL,
+  `file` varchar(255) NOT NULL,
+  `hits` int(11) NOT NULL,
+  `time` int(11) NOT NULL,
+  `catid` int(11) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;");
+
+
+$makeTable = mysql_query("CREATE TABLE `audio_module_comments` (
+  `id` int(11) NOT NULL auto_increment,
+  `topic_id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `time` int(11) NOT NULL,
+  `comment` text NOT NULL,
+  `ip` varchar(255) NOT NULL,
+  `active` int(11) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;");
+
+	if($makeTable){
+		
+			$adinc->greenAlert("تم تركيب البرنامج بنجاح");
+		
+		}else{
+		
+			$adinc->redAlert("حدث خطأ في تركيب البرنامج");	
+		}
+?>

@@ -1,0 +1,91 @@
+<?php
+	
+	class eliaModuleInstall{
+		
+		public $module;
+		
+		public function main(){
+			
+			global $db , $adinc;
+			
+			$this->module = array(
+				'name' => 'برنامج المكتبة المرئية' ,
+				'moduleID' => 'videos.php4u' ,
+				'about' => 'برجة PHP4U' ,
+				'website' => 'www.alkafeel.net' ,
+				'actived' => true
+			);
+			
+			$makeTable = $db->query("CREATE TABLE `videos_module_sections` (
+			  `id` int(11) NOT NULL auto_increment,
+			  `title` varchar(255) NOT NULL,
+			  `photo` varchar(255) NOT NULL,
+			  `files` int(11) NOT NULL,
+			  PRIMARY KEY  (`id`)
+			) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;");
+			
+			$makeTable = $db->query("CREATE TABLE `videos_module_files` (
+			  `id` int(11) NOT NULL auto_increment,
+			  `title` varchar(255) NOT NULL,
+			  `caption` text NOT NULL,
+			  `photo` varchar(255) NOT NULL,
+			  `file` varchar(255) NOT NULL,
+			  `hits` int(11) NOT NULL,
+			  `time` int(11) NOT NULL,
+			  `length` varchar(255) NOT NULL,
+			  `catid` int(11) NOT NULL,
+			  `key` varchar(255) NOT NULL,
+			  `keywords` varchar(255) NOT NULL,
+			  `downloads` int(11) NOT NULL,
+			  `rat_good` int(11) NOT NULL,
+			  `rat_bad` int(11) NOT NULL,
+			  PRIMARY KEY  (`id`)
+			) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;");
+			
+			
+			$makeTable = $db->query("CREATE TABLE `videos_module_comments` (
+			  `id` int(11) NOT NULL auto_increment,
+			  `topic_id` int(11) NOT NULL,
+			  `name` varchar(255) NOT NULL,
+			  `time` int(11) NOT NULL,
+			  `comment` text NOT NULL,
+			  `ip` varchar(255) NOT NULL,
+			  `active` int(11) NOT NULL,
+			  PRIMARY KEY  (`id`)
+			) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;");
+			
+			$makeTable = $db->query("
+			CREATE TABLE `videos_module_setting` (
+			  `add_comments` int(11) NOT NULL,
+			  `player_type` int(11) NOT NULL,
+			  `left_menu` int(11) NOT NULL,
+			  `right_menu` int(11) NOT NULL
+			) ENGINE=MyISAM DEFAULT CHARSET=utf8; ");
+	
+			if($makeTable){
+			
+				$adinc->greenAlert("تم تركيب البرنامج بنجاح");
+			
+			}else{
+			
+				$adinc->redAlert("حدث خطأ في تركيب البرنامج");	
+			}
+				 	
+		} # end function(main)
+		
+		public function onAfterInstall(){
+		
+			global $db , $adinc;
+			
+		} # end function(onAfterInstall)
+		
+		public function onBeforeInstall(){
+		
+			global $db , $adinc;
+				
+		} # end function(onBeforeInstall)
+		
+		
+	}
+	
+?>

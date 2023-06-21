@@ -1,0 +1,81 @@
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="120" valign="top"><img src="{siteUrl}/upload/audio/sections/{sectionPhoto}" width="120" height="80" style="padding:2px; background:#fff; border:1px solid #333;" /></td>
+    <td valign="top" style="padding:5px;">
+    <div style="font-family:Arial, Helvetica, sans-serif; font-size:18px; color:#333;"><a href="{siteUrl}/{module}">{lang.AUDIO}</a> <span style="padding-bottom:2px;">&#8250;</span> {sectionName}</div>
+    <div style="padding:5px; font-weight:bold;">{lang.AUDIO_TOTAL_FILES} : <span style="color:#c00;">{totalFiles}</span> </div>
+	 <div style="padding:5px; font-weight:bold;">{lang.AUDIO_TOTAL_HITS} : <span style="color:#c00;">{totalHits}</span> </div>
+    </td>
+  </tr>
+</table>
+
+<table width="100%" border="0" class="table" cellspacing="0" cellpadding="6">
+  <tr>
+    <td class="table_title" style="text-align:right;">{lang.AUDIO_TITLE}</td>
+    <td class="table_title">{lang.AUDIO_HITS}</td>
+    <td class="table_title">{lang.CREATE_TIME}</td>
+    <td class="table_title">{lang.AUDIO_PLAY}</td>
+    <td class="table_title">{lang.AUDIO_DOWNLOAD}</td>
+  </tr>
+   {loop name="$file" sql="$filesQuery"}
+          <tr>
+            <td class="table_row" style="text-align:right;"><a href="{siteUrl}/{module}/file/id/{file[id]}">{file[title]}</a></td>
+            <td class="table_row">{file[hits]}</td>
+            <td class="table_row">{date.$file[time]."Y/m/d"}</td>
+            <td class="table_row"><a href="{siteUrl}/{module}/file/id/{file[id]}">{lang.AUDIO_PLAY}</a></td>
+            <td class="table_row"><a href="{siteUrl}/{module}/download/id/{file[id]}">{lang.AUDIO_DOWNLOAD}</a></td>
+          </tr>
+	{/loop}
+ </table>
+ 
+ <div class="audio_pagination">{pagination}</div>
+      
+ <div style="border-bottom:1px solid #ccc; margin:10px;">&nbsp;</div>
+ 
+  <div>
+  
+  	<div style=" float:right; width:360px; position:relative;">
+   	
+        <div style="padding:5px; color:#060; font-family:Arial, Helvetica, sans-serif; font-size:15px; font-weight:bold;">{lang.AUDIO_TOP_FILES}</div>
+        
+<table width="100%" border="0" class="table" cellspacing="0" cellpadding="6">
+  <tr>
+    <td class="table_title" style="text-align:right;">{lang.AUDIO_TITLE}</td>
+    <td class="table_title">{lang.AUDIO_HITS}</td>
+    <td class="table_title">{lang.AUDIO_PLAY}</td>
+  </tr>
+   {loop name="$file" sql="$topFiles"}
+          <tr>
+            <td class="table_row" style="text-align:right;"><a href="{siteUrl}/{module}/file/id/{file[id]}">{file[title]}</a></td>
+            <td class="table_row">{file[hits]}</td>
+            <td class="table_row"><a href="{siteUrl}/{module}/file/id/{file[id]}">{lang.AUDIO_PLAY}</a></td>
+          </tr>
+	{/loop}
+ </table>
+      	
+    </div>
+    
+  
+  	<div style=" float:right; margin-right:20px; width:360px; position:relative;">
+   	
+    <div style="padding:5px; color:#060; font-family:Arial, Helvetica, sans-serif; font-size:15px; font-weight:bold;">{lang.AUDIO_TOP_SECTION_FILES} {sectionName}</div>
+    
+<table width="100%" border="0" class="table" cellspacing="0" cellpadding="6">
+  <tr>
+    <td class="table_title" style="text-align:right;">{lang.AUDIO_TITLE}</td>
+    <td class="table_title">{lang.AUDIO_HITS}</td>
+    <td class="table_title">{lang.AUDIO_PLAY}</td>
+  </tr>
+   {loop name="$file" sql="$topSectionFiles"}
+          <tr>
+            <td class="table_row" style="text-align:right;"><a href="{siteUrl}/{module}/file/id/{file[id]}">{file[title]}</a></td>
+            <td class="table_row">{file[hits]}</td>
+            <td class="table_row"><a href="{siteUrl}/{module}/file/id/{file[id]}">{lang.AUDIO_PLAY}</a></td>
+          </tr>
+	{/loop}
+ </table>
+      	
+    </div>
+    
+  </div>
+  

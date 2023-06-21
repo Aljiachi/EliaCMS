@@ -1,0 +1,30 @@
+<?php
+
+# Install News Modules
+	
+$Make_News_Table = mysql_query("
+CREATE TABLE `module_news` (
+  `news_id` int(11) NOT NULL auto_increment,
+  `news_title` varchar(255) NOT NULL,
+  `news_time` int(11) NOT NULL,
+  `news_text` text NOT NULL,
+  PRIMARY KEY  (`news_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+");
+
+$Make_NewsSetting_Table = mysql_query("
+CREATE TABLE `module_news_setting` (
+  `viewpost_active` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;");
+	
+	$Edit_NewsSetting	    = mysql_query("INSERT INTO `module_news_setting` VALUES (1);");
+	
+	$module = array(
+					'name' => 'news Laibray' , 
+					'actived' => true 
+					);
+	
+	if(!$Make_News_Table or !$Make_NewsSetting_Table) { print "Error;"; }
+	
+
+?>

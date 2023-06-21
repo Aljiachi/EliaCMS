@@ -1,0 +1,87 @@
+<script type="text/javascript">
+
+	function empty(string){
+		
+		return string.replace(/ /g , "");	
+		
+	}
+
+	$(document).ready(function(){
+	
+		$("#postcomment").click(function(){
+			
+		var comment_name = $("#name").val();
+		var comment_text = $("#comment").val();
+		
+		if(empty(comment_name) == "" || empty(comment_text) == ""){
+			
+				$("#results").hide().html("<div class='red'>{lang.FILEDS_EMPTY}</div>").fadeIn(300).delay(1500).fadeOut(300);
+				
+			return false;
+		}
+		
+		$.post("mod.php?mod={module}&page=addcomment" , {
+			"addcomment" : 1 , 
+			"name" : comment_name , 
+			"text" : comment_text , 
+			"captcha_code" : "{captcha}" ,
+			"blogid" : "{id}"
+			} , 
+		
+		function(data){
+				
+				$("#name").val("");
+				$("#comment").val("");
+				$("#results").hide().html(data).fadeIn(300).delay(1500).fadeOut(300);
+
+			});	
+		
+		});
+		
+	});
+</script>
+<div class="redMark">{date}
+        <span style="float:left; color:#999; font-family:Tahoma, Geneva, sans-serif; font-size:12px;">{lang.BLOG_READS} : {views} |  {lang.BLOG_COMMENTS} : {totalComments} | <a href="mod.php?mod={module}&page=print&id={id}" target="_new">طباعة المقال</a> </span>
+        </div>
+        
+    	<div class="news_title">{title}</div>
+       
+         <img src="{siteUrl}/upload/blog/{photo}" width="300" height="220" style="float:left; margin-right:7px; border:3px solid #333;" />
+
+         <div class="news_text">{text}</div>
+
+<h1 id="menu_title" style="margin:0px;">{lang.COMMENTS}</h1>
+		<div id="menu_body">
+        
+        {loop name="$comment" sql="$comments"}
+        
+			<div>
+            	<div id="comment_title">كتب : {comment[name]}</div>
+            	<div id="comment_body">{comment[comment]}</div>
+            	<div id="comment_date">{comment[date]}</div>
+            </div>
+        
+        {/loop}
+</div>
+
+<h1 id="menu_title" style="margin:0px;">{lang.POST_COMMENT}</h1>
+	<div id="menu_body">        	
+    <div id="results"></div>
+
+ <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>{lang.COMMENT_NAME}</td>
+    <td><input type="text" id="name" /></td>
+  </tr>
+  <tr>
+    <td>{lang.COMMENT_MESSAGE}</td>
+    <td><textarea rows="5" cols="50" id="comment"></textarea></td>
+  </tr>
+  <tr>
+  <td></td>
+  <td><input type="button" id="postcomment" value="{lang.COMMENT_PUBLISH}" /></td>
+  </tr>
+</table>
+
+    </div>
+        

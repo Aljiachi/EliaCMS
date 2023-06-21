@@ -1,0 +1,28 @@
+<div>
+
+	
+	<div class="accounts-profile-information">
+    
+    	<h1>{nickname}</h1>
+     	<div><img src="upload/accounts/{avatar}" width="180" height="200" /></div>
+        {if name="$isLogged"}
+        	<div><a href="javascript:;" onclick="accountsChangeAvatar()">Change Avatar</a></div>
+        {/if}
+    </div>
+    
+    <div class="accounts-profile-whois">
+    	
+        <div style="height:35px;"> <account-profile-title>{lang.ACCOUNTS_GENDER}</account-profile-title><account-profile-row> : {gender}</account-profile-row> </div>
+        <div style="height:35px;"> <account-profile-title>{lang.ACCOUNTS_LOCATION}</account-profile-title><account-profile-row> : {location}</account-profile-row> </div>
+        <div style="height:35px;"> <account-profile-title>{lang.ACCOUNTS_BIRTHDATE}</account-profile-title><account-profile-row> : {birthdate}</account-profile-row> </div>
+		<div style="padding:10px;">
+        	<a href="{social_facebook}" target="_new"><img src="{siteUrl}/images/facebook.png" /></a>
+        	<a href="{social_twitter}" target="_new"><img src="{siteUrl}/images/twitter.png" /></a>
+        	<a href="{social_googleplus}" target="_new"><img src="{siteUrl}/images/google_plus.png" /></a>
+        	<a href="{social_youtube}" target="_new"><img src="{siteUrl}/images/youtube.png" /></a>
+
+        </div>
+            
+    </div>
+ 
+</div> 

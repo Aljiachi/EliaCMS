@@ -1,0 +1,74 @@
+<form method="post">
+    <div id="request-return"></div>
+      <div class="accounts-signup-section">{lang.ACCOUNTS_SIGNUP_SECTION}</div>
+         <div class="accounts-signup-item">
+            <div class="accounts-signup-item-title">{lang.ACCOUNTS_NICKNAME}</div>
+            <div class="accounts-signup-item-value"><input type="text" name="input-accounts-nickname" id="input-accounts-nickname" value="{nickname}" class="accounts-input-text" /></div>        
+        </div>      
+         <div class="accounts-signup-item">
+            <div class="accounts-signup-item-title">{lang.ACCOUNTS_GENDER}</div>
+            <div class="accounts-signup-item-value">
+                <select id="input-accounts-gender" name="input-accounts-gender" class="accounts-input-menu">
+                    <option value="1"{std valus="1,{gender}"}>{lang.PROFILE_GENDER_MALE}</option>
+                    <option value="2"{std valus="2,{gender}"}>{lang.PROFILE_GENDER_FEMALE}</option>
+                </select>
+            </div>        
+        </div>  
+         <div class="accounts-signup-item">
+            <div class="accounts-signup-item-title">{lang.ACCOUNTS_LOCATION}</div>
+            <div class="accounts-signup-item-value">
+                <select id="input-accounts-location" name="input-accounts-location" class="accounts-input-menu">
+                    {locations}
+                </select>
+            </div>        
+        </div>  
+          <div class="accounts-signup-item">
+            <div class="accounts-signup-item-title">{lang.ACCOUNTS_BIRTHDATE}</div>
+            <div class="accounts-signup-item-value">
+                <select id="input-accounts-birthdate-years" name="input-accounts-birthdate-years" class="accounts-input-menu">
+                    {birthdate_years}
+                </select>
+                <select id="input-accounts-birthdate-months" name="input-accounts-birthdate-months" class="accounts-input-menu">
+                    {birthdate_months}
+                </select>
+                <input type="text" id="input-accounts-birthdate-day" name="input-accounts-birthdate-day" style="width:100px;" class="accounts-input-password" value="{birthdate_day}" />         
+            </div>        
+        </div>  
+                 <div class="accounts-signup-item">
+            <div class="accounts-signup-item-title">{lang.ACCOUNTS_SOCIAL_ACCOUNTS}</div>
+            <div class="accounts-signup-item-value">
+            	<div>
+                    <div id="social-networks-inputs">
+                    	
+                        <!-- FaceBook -->
+                        <div id="social-network-facebook" class="social-networks" style="display:none; float:left;">
+                        		<input type="text" name="input-accounts-social-facebook" id="input-accounts-social-facebook" value="{social_facebook}" class="accounts-input-text" />
+                        </div>
+                        <!-- Youtube -->
+                        <div id="social-network-youtube" class="social-networks" style="display:none; float:left;">
+                        		<input type="text" name="input-accounts-social-youtbue" id="input-accounts-social-youtbue" value="{social_youtube}" class="accounts-input-text" />
+                        </div>   
+                        <!-- Google+ -->
+                        <div id="social-network-googleplus" class="social-networks" style="display:none; float:left;">
+                        		<input type="text" name="input-accounts-social-googleplus" id="input-accounts-social-googleplus" value="{social_googleplus}" class="accounts-input-text" />
+                        </div>   
+                        <!-- Twitter -->
+                        <div id="social-network-twitter" class="social-networks" style="display:none; float:left;">
+                        		<input type="text" name="input-accounts-social-twitter" id="input-accounts-social-twitter" value="{social_twitter}" class="accounts-input-text" />
+                        </div>      
+                    
+                    <div style="padding:5px;">
+                        <a href="javascript:;" onclick="viewSocialGroup('facebook')" style="margin:5px;"><img src="{siteUrl}/images/facebook.png" /></a>
+                        <a href="javascript:;" onclick="viewSocialGroup('googleplus')" style="margin:5px;"><img src="{siteUrl}/images/google_plus.png" /></a>
+                        <a href="javascript:;" onclick="viewSocialGroup('twitter')" style="margin:5px;"><img src="{siteUrl}/images/twitter.png" /></a>
+                        <a href="javascript:;" onclick="viewSocialGroup('youtube')" style="margin:5px;"><img src="{siteUrl}/images/youtube.png" /></a>
+                    </div>
+                                                              
+                    </div>
+             	<div style="clear:both;"></div>
+             	</div>
+            </div>        
+        </div>  
+        <div class="accounts-signup-section"><input type="submit" id="accounts-profile-submit" name="accounts-profile-submit" onClick="return accountsProfile();" class="accounts-input-submit" value="{lang.ACCOUNTS_SIGNUP_SUBMIT}" /></div>
+
+</form>

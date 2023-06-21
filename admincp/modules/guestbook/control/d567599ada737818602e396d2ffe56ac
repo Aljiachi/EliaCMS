@@ -1,0 +1,27 @@
+<?php
+
+   $DropTable = mysql_query("DROP TABLE `module_guestbook`");
+	
+	if(!$DropTable){
+	
+		$adinc->redAlert('حدث خطئ في حذف المودول');
+
+	}else{
+		
+		function afterInstall(){
+			
+			global $api;
+							
+			// Delete Plugins 
+			$api->deletePlugin("guestbook_plugin" , true , 'guestbook');
+			
+			// Delete Phrases
+			$api->deletePhrase("guestbook");
+			
+			// Delete Menus
+			$api->deleteMenu("byFile.guestbook_menu" , true , 'guestbook');	
+		
+		}
+		
+	}
+?>
